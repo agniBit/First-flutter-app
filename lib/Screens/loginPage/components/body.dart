@@ -10,25 +10,16 @@ class Body extends StatelessWidget {
     ValueChanged<String> email;
     ValueChanged<String> password;
     return Container(
+      alignment: Alignment.center,
+      height: size.height,
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          SizedBox(
-            height: size.height * .15,
-          ),
           Text(
             'signup',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
-          SizedBox(
-            height: size.height * .05,
-          ),
-          Image.asset(
-            "assets/kisspng-mehndi-designs-traditional-henna-body-art-tattoo-5bf276a343ef97.6899684415426167392783.png",
-            height: size.height * .3,
-          ),
-          SizedBox(
-            height: size.height * .05,
-          ),
+          SizedBox(height: size.height*.3,),
           Textinputfiel(
             child: TextField(
               onChanged: email,
