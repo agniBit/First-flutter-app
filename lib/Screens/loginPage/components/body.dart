@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:login_app/Screens/loginPage/components/textinputfield.dart';
 import 'package:login_app/const.dart';
+import 'package:login_app/serverAPIs/authUser.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Body extends StatelessWidget {
   const Body({Key key}) : super(key: key);
@@ -19,7 +21,9 @@ class Body extends StatelessWidget {
             'signup',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
           ),
-          SizedBox(height: size.height*.3,),
+          SizedBox(
+            height: size.height * .3,
+          ),
           Textinputfiel(
             child: TextField(
               onChanged: email,
@@ -58,6 +62,21 @@ class Body extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 15),
                   color: primarycolor,
                   onPressed: () {
+                    Auth().login(email, password).then((val) {
+                      if (val.data['success']) {
+                        print("wowoa success");
+                        var token = val.data['token'];
+                        Fluttertoast.showToast(
+                            msg: 'authentication successful',
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            backgroundColor: Colors.yellow,
+                            textColor: Colors.white,
+                            fontSize: 16);
+                      } else {
+                        print("failed to send data to server");
+                      }
+                    });
                   },
                   child: Text(
                     'Signin',
